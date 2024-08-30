@@ -19,7 +19,7 @@ click = []
 x1,x2,y1,y2 = 0,0,0,0
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"A:\Python\AutoTyping\New folder\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"A:\GitHub\AutoTyper\assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
