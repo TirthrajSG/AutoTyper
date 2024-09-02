@@ -5,7 +5,8 @@ import pynput.mouse
 from pynput.keyboard import Key, Controller
 import keyboard
 import time
-from PIL import ImageGrab
+import requests
+from PIL import ImageGrab, Image, ImageTk
 import pytesseract, pyperclip
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 import ctypes
@@ -19,11 +20,21 @@ click = []
 x1,x2,y1,y2 = 0,0,0,0
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"A:\GitHub\AutoTyper\assets\frame0")
+# ASSETS_PATH = f"{OUTPUT_PATH}\\assets\\frame0"
+ASSETS_PATH = "assets\\frame0"
+
 
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
+def display_image_from_url(url):
+   
+   data = requests.get(url, stream=True).raw
+
+   image = Image.open(data)
+   photo = ImageTk.PhotoImage(image)
+   return photo
 
 
 def share(a):
@@ -159,12 +170,12 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
+
+img1 = display_image_from_url('https://i.imghippo.com/files/nNk8p1725285327.png')
 entry_bg_1 = canvas.create_image(
     250.5,
     250.5,
-    image=entry_image_1
+    image=img1
 )
 log = Text(
     bd=0,
@@ -179,18 +190,16 @@ log.place(
     height=203.0
 )
 
-image_image_1 = PhotoImage(
-    file=relative_to_assets("image_1.png"))
+img2 = display_image_from_url('https://i.imghippo.com/files/oWRes1725285407.png')
 image_1 = canvas.create_image(
     250.0,
     22.0,
-    image=image_image_1
+    image= img2
 )
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
+img3 = display_image_from_url('https://i.imghippo.com/files/uhvLv1725285481.png')
 button_1 = Button(
-    image=button_image_1,
+    image=img3,
     borderwidth=0,
     highlightthickness=0,
     activebackground='#9ce5f7',
@@ -204,10 +213,9 @@ button_1.place(
     height=50.0
 )
 
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
+img4 = display_image_from_url('https://i.imghippo.com/files/EQl4R1725285504.png')
 button_2 = Button(
-    image=button_image_2,
+    image=img4,
     borderwidth=0,
     activebackground='#9ce5f7',
     highlightthickness=0,
@@ -221,10 +229,9 @@ button_2.place(
     height=50.0
 )
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
+img5 = display_image_from_url('https://i.imghippo.com/files/nvUCa1725285523.png')
 button_3 = Button(
-    image=button_image_3,
+    image=img5,
     borderwidth=0,
     highlightthickness=0,
     activebackground='#9ce5f7',
@@ -238,10 +245,9 @@ button_3.place(
     height=50.0
 )
 
-button_image_4 = PhotoImage(
-    file=relative_to_assets("button_4.png"))
+img6 = display_image_from_url('https://i.imghippo.com/files/KyFr71725285540.png')
 button_4 = Button(
-    image=button_image_4,
+    image=img6,
     borderwidth=0,
     highlightthickness=0,
     activebackground='#3a7fc8',
@@ -254,11 +260,9 @@ button_4.place(
     width=205.0,
     height=65.0
 )
-
-button_image_5 = PhotoImage(
-    file=relative_to_assets("button_5.png"))
+img7 = display_image_from_url('https://i.imghippo.com/files/9UwEF1725285564.png')
 button_5 = Button(
-    image=button_image_5,
+    image=img7,
     borderwidth=0,
     highlightthickness=0,
     activebackground='#3a7fc8',
@@ -272,10 +276,9 @@ button_5.place(
     height=65.0
 )
 
-button_image_6 = PhotoImage(
-    file=relative_to_assets("button_6.png"))
+img8 = display_image_from_url('https://i.imghippo.com/files/h55XH1725285587.png')
 button_6 = Button(
-    image=button_image_6,
+    image=img8,
     borderwidth=0,
     highlightthickness=0,
     activebackground='#094656',
@@ -288,5 +291,7 @@ button_6.place(
     width=35.0,
     height=35.0
 )
+
+window.title("Auto Typing")
 window.resizable(False, False)
 window.mainloop()
